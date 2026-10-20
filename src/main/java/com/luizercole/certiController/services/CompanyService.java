@@ -3,10 +3,13 @@ package com.luizercole.certiController.services;
 import com.luizercole.certiController.dto.CompanyDTO;
 import com.luizercole.certiController.entities.Company;
 import com.luizercole.certiController.repositories.CompanyRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -21,6 +24,17 @@ public class CompanyService {
         return list.stream().map(x -> new CompanyDTO(x)).collect(Collectors.toList());
     }
 
+    public CompanyDTO findById(Long id){
+        Optional<Company> obj = repository.findById(id);
+        Company entity = obj.orElseThrow(() -> new EntityNotFoundException("Entity not found"));
+        return new CompanyDTO(entity);
+    }
 
-
+    public CompanyDTO createCompany(CompanyDTO companyDTO){
+        Company entity = new Company();
+        entity.setActive(companyDTO.getActive());
+        entity.setName(companyDTO.getName());
+        repository.save(entity);
+        return new CompanyDTO(entity);
+    }
 }
