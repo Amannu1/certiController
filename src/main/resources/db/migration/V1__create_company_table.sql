@@ -1,4 +1,4 @@
-create table tbcompany(
+create table tb_company(
     id bigint primary key auto_increment,
     name varchar(100) not null,
     active boolean not null default false,
@@ -6,5 +6,5 @@ create table tbcompany(
     updated_at TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
 
-insert into tbcompany(NAME, ACTIVE, CREATED_AT) VALUES ('Company 1', false, now());
-insert into tbcompany(NAME, ACTIVE, CREATED_AT) VALUES ('Company 2', true, now());
+insert into tb_company(NAME, ACTIVE, CREATED_AT) VALUES ('Company 1', false, now());
+insert into tb_company(NAME, ACTIVE, CREATED_AT) VALUES ('Company 2', true, now());
