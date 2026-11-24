@@ -1,7 +1,6 @@
 package com.luizercole.certiController.services;
 
 import com.luizercole.certiController.dto.RoleDTO;
-import com.luizercole.certiController.entities.Company;
 import com.luizercole.certiController.entities.Role;
 import com.luizercole.certiController.repositories.RoleRepository;
 import com.luizercole.certiController.services.exceptions.EntityNotFoundException;
@@ -24,7 +23,6 @@ public class RoleService {
     @Transactional(readOnly = true)
     public List<RoleDTO> findAll(){
         List<Role> list = roleRepository.findAll();
-
         return list.stream().map(x -> new RoleDTO(x)).collect(Collectors.toList());
     }
 
